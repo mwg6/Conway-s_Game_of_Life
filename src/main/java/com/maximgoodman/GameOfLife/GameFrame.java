@@ -16,13 +16,13 @@ import javax.swing.border.Border;
 public class GameFrame extends JFrame 
 {
     int squareSize;
-    JFrame frame = new JFrame("Game of Life");
+    int iteration = 0;
+    JFrame frame = new JFrame("Game of Life; Iteration -" + iteration);
     Border border = BorderFactory.createLineBorder(Color.black, 5);
     JPanel grid;
     GameBoard game;
     Dimension dimension = new Dimension(600,720);
     Timer timer = new Timer();
-    
 
     public GameFrame(int squareSize)
     {
@@ -51,29 +51,14 @@ public class GameFrame extends JFrame
                 grid.removeAll();
                 grid.repaint();
 
-                /*
-
-                for (int i = 0; i < squareSize; i++) {
-                    for (int j = 0; j < squareSize; j++) {
-                        if(board[i][j]==1)
-                        {
-                            grid.add(new JLabel("X"));
-                        }
-                        else
-                        {
-                            grid.add(new JLabel(" "));
-                        }
-                        
-                    }
-                }
-                */
                 for(int i = 0;i<squareSize;i++){
                     grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
                 }
 
                grid.setPreferredSize(dimension);
                 frame.add(grid);
-               
+               iteration++;
+               frame.setTitle("Game of Life; Iteration -" + iteration);
                frame.pack();          
             }
         };
@@ -103,20 +88,7 @@ public class GameFrame extends JFrame
             for (int i = 0; i < squareSize; i++) {
 
                 grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
-                //System.out.println(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",",""));
-                /*
-                for (int j = 0; j < squareSize; j++) {
-                    if(board[i][j]==1)
-                    {
-                        grid.add(new JLabel("X"));
-                    }
-                    else
-                    {
-                        grid.add(new JLabel(" "));
-                    }
-                    
-                }
-                */
+
             }
 
     }
