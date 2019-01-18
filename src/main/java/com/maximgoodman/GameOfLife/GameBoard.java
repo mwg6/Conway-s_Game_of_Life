@@ -88,37 +88,13 @@ public class GameBoard
                 }
             }
         }
-        
-        
-       // printBoard(board);
-        
+
 	}
 
     private void deadCellRules(int i, int j) {
-        int countLiving =0;
-        
-        for(int row=i-1;row<=i+1;row++)
-        {
-            if(row<0||row==squareLength)
-            {
 
-            }
-            else
-            {
-                for(int col = j-1;col<=j+1;col++)
-                {
-                    if(col<0||col==squareLength||row==i&&col==j)
-                    {}
-                    else
-                    {
-                        if(holdBoard[row][col]==1)
-                        {
-                            countLiving++;
-                        }
-                    }
-                }
-            }
-        }
+        int countLiving = countLiving(i,j);
+
         if(countLiving==3)
         {
             board[i][j]=1;
@@ -128,8 +104,21 @@ public class GameBoard
 
     private void livingCellRules(int i, int j)
     {
+
+        int countLiving = countLiving(i,j);
+
+        if(countLiving<2||countLiving>3)
+        {
+            board[i][j] =0; 
+        }
+       
+
+    }
+
+    private int countLiving(int i, int j){
+
         int countLiving =0;
-        
+
         for(int row=i-1;row<=i+1;row++)
         {
             if(row<0||row==squareLength)
@@ -153,13 +142,8 @@ public class GameBoard
             }
         }
 
-        if(countLiving<2||countLiving>3)
-        {
-            board[i][j] =0; 
-        }
-       
-
-    }
+        return countLiving;
+}
 
     public byte[][] getBoard()
     {

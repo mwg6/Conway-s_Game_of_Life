@@ -16,14 +16,15 @@ public class IntroFrame {
     public IntroFrame(){
         frame = new JFrame("Intro");
 
-        frame.setLayout(new FlowLayout());
-        frame.setSize(300,300);
-        area = new JTextArea();
+        frame.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
+
+        area = new JTextArea(1, 20);
         areaLabel = new JLabel("Desired Square Dimensions");
         submitButton = new JButton("submit");
         frame.add(areaLabel);
         frame.add(area);
         frame.add(submitButton);
+        frame.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -32,7 +33,7 @@ public class IntroFrame {
             }
         });
 
-        //frame.pack();
+        frame.pack();
 
         frame.setVisible(true);
     }

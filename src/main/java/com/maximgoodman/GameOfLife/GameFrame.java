@@ -7,10 +7,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 public class GameFrame extends JFrame 
@@ -18,8 +15,9 @@ public class GameFrame extends JFrame
     int squareSize;
     int iteration = 0;
     JFrame frame = new JFrame("Game of Life; Iteration -" + iteration);
-    Border border = BorderFactory.createLineBorder(Color.black, 5);
+
     JPanel grid;
+    JPanel settingsPanel;
     GameBoard game;
     Dimension dimension = new Dimension(600,720);
     Timer timer = new Timer();
@@ -30,11 +28,15 @@ public class GameFrame extends JFrame
         
         
         JPanel grid = new JPanel();
-        
+
         this.grid = grid;
+
+        settingsPanel =new JPanel();
+
         
 
         formatGrid();
+        formatSettings();
         populateGrid();
         update();
     }
@@ -56,9 +58,12 @@ public class GameFrame extends JFrame
                 }
 
                grid.setPreferredSize(dimension);
-                frame.add(grid);
+               frame.add(grid);
+               frame.add(settingsPanel);
                iteration++;
                frame.setTitle("Game of Life; Iteration -" + iteration);
+               formatGrid();
+               formatSettings();
                frame.pack();          
             }
         };
@@ -66,17 +71,31 @@ public class GameFrame extends JFrame
     }
     private void formatGrid()
     {
-        grid.setLayout(new GridLayout(squareSize, squareSize));
-        grid.setBorder(border);
+        grid.setLayout(new BoxLayout(grid, BoxLayout.PAGE_AXIS));
+        grid.add(Box.createRigidArea(new Dimension(0,5)));
+
         grid.setPreferredSize(dimension);
         
-        
+
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         frame.add(grid);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private void formatSettings(){
+        settingsPanel.setLayout(new BoxLayout(settingsPanel, BoxLayout.LINE_AXIS));
+        settingsPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+
+        JButton cancel = new JButton("Cancel");
+        JTextArea iterations = new JTextArea(1,20);
+
+        settingsPanel.add(Box.createHorizontalGlue());
+        settingsPanel.add(cancel);
+        settingsPanel.add(iterations);
     }
 
     private void populateGrid()
