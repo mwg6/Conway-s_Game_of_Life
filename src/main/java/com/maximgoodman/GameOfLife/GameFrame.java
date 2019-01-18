@@ -1,8 +1,7 @@
 package com.maximgoodman.GameOfLife;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
+import java.io.Console;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,7 +13,8 @@ public class GameFrame extends JFrame
 {
     int squareSize;
     int iteration = 0;
-    JFrame frame = new JFrame("Game of Life; Iteration -" + iteration);
+    Container frame = getContentPane();
+    //JFrame frame = new JFrame("Game of Life; Iteration -" + iteration);
 
     JPanel grid;
     JPanel settingsPanel;
@@ -39,6 +39,12 @@ public class GameFrame extends JFrame
         formatSettings();
         populateGrid();
         update();
+
+        //frame.pack();
+        frame.add(grid, BorderLayout.CENTER);
+        frame.add(settingsPanel, BorderLayout.CENTER);
+        frame.setVisible(true);
+        System.out.println("Here");
     }
 
     private void update()
@@ -61,10 +67,11 @@ public class GameFrame extends JFrame
                frame.add(grid);
                frame.add(settingsPanel);
                iteration++;
-               frame.setTitle("Game of Life; Iteration -" + iteration);
+
+               //frame.setTitle("Game of Life; Iteration -" + iteration);
                formatGrid();
                formatSettings();
-               frame.pack();          
+               //frame.pack();
             }
         };
          timer.schedule(task, 0, 20);
@@ -78,12 +85,12 @@ public class GameFrame extends JFrame
         
 
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        frame.add(grid);
-        frame.pack();
-        frame.setVisible(true);
+
+
+
+
     }
 
     private void formatSettings(){
@@ -96,6 +103,8 @@ public class GameFrame extends JFrame
         settingsPanel.add(Box.createHorizontalGlue());
         settingsPanel.add(cancel);
         settingsPanel.add(iterations);
+
+
     }
 
     private void populateGrid()
