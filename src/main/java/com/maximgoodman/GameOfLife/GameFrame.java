@@ -13,10 +13,11 @@ public class GameFrame extends JFrame
 {
     int squareSize;
     int iteration = 0;
-    Container frame = getContentPane();
+    JFrame frame;
+
     //JFrame frame = new JFrame("Game of Life; Iteration -" + iteration);
 
-    JPanel grid;
+    //JInternalFrame grid;
     JPanel settingsPanel;
     GameBoard game;
     Dimension dimension = new Dimension(600,720);
@@ -26,25 +27,34 @@ public class GameFrame extends JFrame
     {
         this.squareSize =squareSize;
         
-        
-        JPanel grid = new JPanel();
+        /*
+        JInternalFrame grid = new JInternalFrame();
 
         this.grid = grid;
+*/
+        JPanel settingsPanel = new JPanel();
 
-        settingsPanel =new JPanel();
+        this.settingsPanel=settingsPanel;
 
-        
+        JFrame frame = new JFrame();
+        this.frame=frame;
 
-        formatGrid();
+       // formatGrid();
         formatSettings();
-        populateGrid();
-        update();
 
-        //frame.pack();
-        frame.add(grid, BorderLayout.CENTER);
-        frame.add(settingsPanel, BorderLayout.CENTER);
+        populateGrid();
+
+
+        frame.setLayout(new BorderLayout());
+       // frame.add(grid, BorderLayout.CENTER);
+        frame.add(settingsPanel, BorderLayout.PAGE_END);
+        frame.setPreferredSize(dimension);
+        frame.pack();
         frame.setVisible(true);
-        System.out.println("Here");
+
+       // update();
+
+
     }
 
     private void update()
@@ -56,46 +66,45 @@ public class GameFrame extends JFrame
             public void run() { 
                 game.nextIteration();
                 byte[][] board = game.getBoard();
+                frame.removeAll();
+                frame.repaint();
+                /*
                 grid.removeAll();
                 grid.repaint();
-
+*/
                 for(int i = 0;i<squareSize;i++){
-                    grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
+                    frame.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
+                    //grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
                 }
 
-               grid.setPreferredSize(dimension);
-               frame.add(grid);
-               frame.add(settingsPanel);
+
+
                iteration++;
 
                //frame.setTitle("Game of Life; Iteration -" + iteration);
-               formatGrid();
-               formatSettings();
-               //frame.pack();
+              // formatGrid();
+               //grid.pack();
+               //grid.setVisible(true);
+              // frame.setLayout(new BorderLayout());
+               //frame.add(grid, BorderLayout.CENTER);
+
+               frame.add(settingsPanel, BorderLayout.PAGE_END);
+               frame.pack();
             }
         };
-         timer.schedule(task, 0, 20);
+         timer.schedule(task, 0, 200);
     }
     private void formatGrid()
     {
-        grid.setLayout(new BoxLayout(grid, BoxLayout.PAGE_AXIS));
-        grid.add(Box.createRigidArea(new Dimension(0,5)));
-
-        grid.setPreferredSize(dimension);
-        
-
-
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-
+        //grid.setLayout(new BoxLayout(grid, BoxLayout.PAGE_AXIS));
+        //grid.add(Box.createRigidArea(new Dimension(0,5)));
 
 
     }
 
     private void formatSettings(){
-        settingsPanel.setLayout(new BoxLayout(settingsPanel, BoxLayout.LINE_AXIS));
-        settingsPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+        //settingsPanel.setLayout(new BoxLayout(settingsPanel, BoxLayout.LINE_AXIS));
+       // settingsPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
 
         JButton cancel = new JButton("Cancel");
         JTextArea iterations = new JTextArea(1,20);
@@ -115,9 +124,11 @@ public class GameFrame extends JFrame
  
             for (int i = 0; i < squareSize; i++) {
 
-                grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
+                frame.add(new JLabel(""+i));
+               // frame.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
+                //grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
 
             }
-
+        frame.add(new JLabel("X"));
     }
 }

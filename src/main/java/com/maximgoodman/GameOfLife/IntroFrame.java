@@ -60,6 +60,7 @@ public class IntroFrame {
         {
             System.out.println(sizeOfBoard);
             GameFrame game = new GameFrame(sizeOfBoard);
+            //game.setVisible(true);
         }
 
 
