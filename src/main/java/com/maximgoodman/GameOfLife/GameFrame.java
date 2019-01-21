@@ -1,13 +1,13 @@
 package com.maximgoodman.GameOfLife;
 
 import java.awt.*;
-import java.io.Console;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class GameFrame extends JFrame 
 {
@@ -15,18 +15,17 @@ public class GameFrame extends JFrame
     int iteration = 0;
     JFrame frame;
 
-    //JFrame frame = new JFrame("Game of Life; Iteration -" + iteration);
-
     JPanel grid;
     JPanel settingsPanel;
     GameBoard game;
     Dimension dimension = new Dimension(600,720);
     Timer timer = new Timer();
+    JLabel iterLabel = new JLabel("Iterations: "+iteration);
+    boolean cancelPressed = false;
 
     public GameFrame(int squareSize)
     {
         this.squareSize =squareSize;
-        
 
         JPanel grid = new JPanel();
         grid.setLayout(new GridLayout(squareSize,squareSize));
@@ -39,11 +38,9 @@ public class GameFrame extends JFrame
         JFrame frame = new JFrame();
         this.frame=frame;
 
-       // formatGrid();
         formatSettings();
 
         populateGrid();
-
 
         frame.setLayout(new BorderLayout());
         frame.add(grid, BorderLayout.CENTER);
@@ -62,58 +59,67 @@ public class GameFrame extends JFrame
         TimerTask task;
 
         task = new TimerTask() {
-            @Override
-            public void run() { 
-                game.nextIteration();
-                byte[][] board = game.getBoard();
-                //frame.removeAll();
-                //frame.repaint();
 
-                grid.removeAll();
-                grid.repaint();
+                @Override
+                public void run () {
+                    /*
+                    if(cancelPressed){
+                        timer.cancel();
+                        return;
+                    }
+*/
+                    iteration++;
+                    game.nextIteration();
+                    byte[][] board = game.getBoard();
 
-                for(int i = 0;i<squareSize;i++){
+                    grid.removeAll();
+                    grid.repaint();
 
-                    grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
+                    for (int i = 0; i < squareSize; i++) {
+
+                        grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",", "").replace("0", " ")));
+                    }
+
+
+                    iterLabel.setText("Iterations: " + iteration);
+
+                    grid.setVisible(true);
+
+                    frame.add(grid, BorderLayout.CENTER);
+
+                    frame.pack();
                 }
 
-
-
-               iteration++;
-
-               frame.setTitle("Game of Life; Iteration -" + iteration);
-              // formatGrid();
-
-               grid.setVisible(true);
-              // frame.setLayout(new BorderLayout());
-               frame.add(grid, BorderLayout.CENTER);
-
-               //frame.add(settingsPanel, BorderLayout.PAGE_END);
-               frame.pack();
-            }
         };
-         timer.schedule(task, 0, 200);
-    }
-    private void formatGrid()
-    {
-        //grid.setLayout(new BoxLayout(grid, BoxLayout.PAGE_AXIS));
-        //grid.add(Box.createRigidArea(new Dimension(0,5)));
-
+         timer.schedule(task,0,200);
 
     }
 
     private void formatSettings(){
-        //settingsPanel.setLayout(new BoxLayout(settingsPanel, BoxLayout.LINE_AXIS));
-       // settingsPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
 
         JButton cancel = new JButton("Cancel");
-        JTextArea iterations = new JTextArea(1,20);
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                cancelButtonPressed();
+            }
+        });
 
         settingsPanel.add(Box.createHorizontalGlue());
+        settingsPanel.add(iterLabel);
         settingsPanel.add(cancel);
-        settingsPanel.add(iterations);
 
+    }
 
+    private void cancelButtonPressed(){
+        cancelPressed = !cancelPressed;
+
+        if(!cancelPressed){
+            update();
+        }
+        else{
+            timer.cancel();
+        }
     }
 
     private void populateGrid()
@@ -124,12 +130,8 @@ public class GameFrame extends JFrame
  
             for (int i = 0; i < squareSize; i++) {
 
-                //frame.add(new JLabel(""+i));
-               // frame.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
                 grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
-              //  grid.add(new JLabel(""+i));
 
             }
-        //frame.add(new JLabel("X"));
     }
 }
