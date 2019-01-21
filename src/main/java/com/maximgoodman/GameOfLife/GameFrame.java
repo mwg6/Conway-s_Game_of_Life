@@ -17,7 +17,7 @@ public class GameFrame extends JFrame
 
     //JFrame frame = new JFrame("Game of Life; Iteration -" + iteration);
 
-    //JInternalFrame grid;
+    JPanel grid;
     JPanel settingsPanel;
     GameBoard game;
     Dimension dimension = new Dimension(600,720);
@@ -27,11 +27,11 @@ public class GameFrame extends JFrame
     {
         this.squareSize =squareSize;
         
-        /*
-        JInternalFrame grid = new JInternalFrame();
 
+        JPanel grid = new JPanel();
+        grid.setLayout(new GridLayout(squareSize,squareSize));
         this.grid = grid;
-*/
+
         JPanel settingsPanel = new JPanel();
 
         this.settingsPanel=settingsPanel;
@@ -46,13 +46,13 @@ public class GameFrame extends JFrame
 
 
         frame.setLayout(new BorderLayout());
-       // frame.add(grid, BorderLayout.CENTER);
+        frame.add(grid, BorderLayout.CENTER);
         frame.add(settingsPanel, BorderLayout.PAGE_END);
         frame.setPreferredSize(dimension);
         frame.pack();
         frame.setVisible(true);
 
-       // update();
+        update();
 
 
     }
@@ -66,29 +66,29 @@ public class GameFrame extends JFrame
             public void run() { 
                 game.nextIteration();
                 byte[][] board = game.getBoard();
-                frame.removeAll();
-                frame.repaint();
-                /*
+                //frame.removeAll();
+                //frame.repaint();
+
                 grid.removeAll();
                 grid.repaint();
-*/
+
                 for(int i = 0;i<squareSize;i++){
-                    frame.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
-                    //grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
+
+                    grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","").replace("0", " ")));
                 }
 
 
 
                iteration++;
 
-               //frame.setTitle("Game of Life; Iteration -" + iteration);
+               frame.setTitle("Game of Life; Iteration -" + iteration);
               // formatGrid();
-               //grid.pack();
-               //grid.setVisible(true);
-              // frame.setLayout(new BorderLayout());
-               //frame.add(grid, BorderLayout.CENTER);
 
-               frame.add(settingsPanel, BorderLayout.PAGE_END);
+               grid.setVisible(true);
+              // frame.setLayout(new BorderLayout());
+               frame.add(grid, BorderLayout.CENTER);
+
+               //frame.add(settingsPanel, BorderLayout.PAGE_END);
                frame.pack();
             }
         };
@@ -124,11 +124,12 @@ public class GameFrame extends JFrame
  
             for (int i = 0; i < squareSize; i++) {
 
-                frame.add(new JLabel(""+i));
+                //frame.add(new JLabel(""+i));
                // frame.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
-                //grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
+                grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
+              //  grid.add(new JLabel(""+i));
 
             }
-        frame.add(new JLabel("X"));
+        //frame.add(new JLabel("X"));
     }
 }

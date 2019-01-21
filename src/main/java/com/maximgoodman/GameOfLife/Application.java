@@ -14,7 +14,7 @@ public class Application
 		Scanner input = new Scanner(System.in);
 		int num = input.nextInt();
 */
-		GameFrame game = new GameFrame(100);
+		GameFrame game = new GameFrame(200);
 
 		
 	}
