@@ -23,6 +23,9 @@ public class GameFrame extends JFrame
     JLabel iterLabel = new JLabel("Iterations: "+iteration);
     boolean cancelPressed = false;
 
+    TimerTask task;
+    int interval =200;
+
     public GameFrame(int squareSize)
     {
         this.squareSize =squareSize;
@@ -49,49 +52,50 @@ public class GameFrame extends JFrame
         frame.pack();
         frame.setVisible(true);
 
+        //create the task in the constructor so we can toggle on off
+        task = new createTask();
+
         update();
 
 
     }
 
-    private void update()
-    {
-        TimerTask task;
-
-        task = new TimerTask() {
-
-                @Override
-                public void run () {
+    class createTask extends TimerTask{
+        @Override
+        public void run () {
                     /*
                     if(cancelPressed){
                         timer.cancel();
                         return;
                     }
 */
-                    iteration++;
-                    game.nextIteration();
-                    byte[][] board = game.getBoard();
+            iteration++;
+            game.nextIteration();
+            byte[][] board = game.getBoard();
 
-                    grid.removeAll();
-                    grid.repaint();
+            grid.removeAll();
+            grid.repaint();
 
-                    for (int i = 0; i < squareSize; i++) {
+            for (int i = 0; i < squareSize; i++) {
 
-                        grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",", "").replace("0", " ")));
-                    }
+                grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",", "").replace("0", " ")));
+            }
 
 
-                    iterLabel.setText("Iterations: " + iteration);
+            iterLabel.setText("Iterations: " + iteration);
 
-                    grid.setVisible(true);
+            grid.setVisible(true);
 
-                    frame.add(grid, BorderLayout.CENTER);
+            frame.add(grid, BorderLayout.CENTER);
 
-                    frame.pack();
-                }
+            frame.pack();
+        }
+    }
 
-        };
-         timer.schedule(task,0,200);
+    private void update()
+    {
+
+         timer.schedule(task,0,interval);
 
     }
 
@@ -115,10 +119,14 @@ public class GameFrame extends JFrame
         cancelPressed = !cancelPressed;
 
         if(!cancelPressed){
-            update();
+
+            //have to create new task as old is cancelled
+            task= new createTask();
+            timer.schedule(task,0,interval);
         }
         else{
-            timer.cancel();
+            //necessary to cancel task, not timer, to toggle the action
+            task.cancel();
         }
     }
 
