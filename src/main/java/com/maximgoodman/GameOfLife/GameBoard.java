@@ -11,18 +11,18 @@ public class GameBoard
    byte[][]holdBoard;
    
 
-    public GameBoard(int squareLength)
+    public GameBoard(int squareLength, int whiteFrac)
     {
         this.squareLength =squareLength;
 
         byte[][]board = new byte[squareLength][squareLength];
         this.board=board;
 
-        populateBoard();
+        populateBoard(whiteFrac);
                 
     }
 
-    private void populateBoard() 
+    private void populateBoard(int whiteFrac)
     {
                
         for (int i=0;i<squareLength;i++) 
@@ -30,7 +30,7 @@ public class GameBoard
         
             for(int j=0;j<squareLength;j++)
             {
-                int pop = (int) (Math.random()*100);
+                int pop = (int) (Math.random()*(whiteFrac*2));
                 if(pop%2 ==0)
                 {
                     board[i][j]=0;

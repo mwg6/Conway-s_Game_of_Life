@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd2b245f-5ba2-4b62-aca5-e9f9b8e12e52" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="100" selection-start-line="100" selection-end-line="100" />
+            <state relative-caret-position="360">
+              <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -48,10 +49,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="121" column="35" selection-start-line="121" selection-start-column="35" selection-end-line="121" selection-end-column="35" />
+            <state relative-caret-position="426">
+              <caret line="182" column="14" selection-start-line="182" selection-start-column="14" selection-end-line="182" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2645#2646#0" expanded="true" />
+                <element signature="e#2683#2684#0" expanded="true" />
                 <element signature="e#1727#1728#0" expanded="true" />
                 <element signature="e#1780#1781#0" expanded="true" />
               </folding>
@@ -76,9 +79,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/IntroFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java" />
       </list>
     </option>
@@ -145,7 +148,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548207643685" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548300595157" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -193,12 +196,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547771884813</updated>
       <workItem from="1547771888038" duration="4767000" />
-      <workItem from="1548020317051" duration="10385000" />
+      <workItem from="1548020317051" duration="14120000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15152000" />
+    <option name="totallyTimeSpent" value="18887000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1910" height="1080" extended-state="4" />
@@ -253,13 +256,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/IntroFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -267,12 +263,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="121" column="35" selection-start-line="121" selection-start-column="35" selection-end-line="121" selection-end-column="35" />
+        <state relative-caret-position="426">
+          <caret line="182" column="14" selection-start-line="182" selection-start-column="14" selection-end-line="182" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2645#2646#0" expanded="true" />
+            <element signature="e#2683#2684#0" expanded="true" />
             <element signature="e#1727#1728#0" expanded="true" />
             <element signature="e#1780#1781#0" expanded="true" />
           </folding>
