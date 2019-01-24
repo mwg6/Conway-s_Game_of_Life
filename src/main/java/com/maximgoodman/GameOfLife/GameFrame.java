@@ -101,7 +101,7 @@ public class GameFrame extends JFrame
 
     private void formatSettings(){
 
-        JLabel interval = new JLabel("Interval (ms)");
+        JLabel intervalLabel = new JLabel("Interval (ms)");
         intervalInput = new JTextArea(1,4);
         JLabel random = new JLabel("White Fraction");
         randomInput = new JTextArea(1,2);
@@ -122,8 +122,10 @@ public class GameFrame extends JFrame
             }
         });
 
+        intervalInput.setText(""+interval);
+        randomInput.setText(""+whiteFrac);
         settingsPanel.add(Box.createHorizontalGlue());
-        settingsPanel.add(interval);
+        settingsPanel.add(intervalLabel);
         settingsPanel.add(intervalInput);
         settingsPanel.add(random);
         settingsPanel.add(randomInput);
@@ -157,32 +159,50 @@ public class GameFrame extends JFrame
         String randInput = randomInput.getText();
 
         //if user has entered a valid input for interval, cancel task, start with new interval
-        if(Integer.parseInt(interInput)>0){
-            task.cancel();
-            interval = Integer.parseInt(interInput);
-            timer.schedule(task, interval);
+        try{
+            if(Integer.parseInt(interInput)>0){
+                //task.cancel();
+                interval = Integer.parseInt(interInput);
+                //timer.schedule(task, interval);
+            }
+            else{
+                intervalInput.setText("ERR!");
+            }
         }
-        else{
-            intervalInput.setText("ERR!");
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println(interInput);
+            intervalInput.setText("NaN!");
         }
 
-        //changing the whit fractions and redrawing board
-        if(Integer.parseInt(randInput)>=0&&Integer.parseInt(randInput)<=100){
-            whiteFrac = Integer.parseInt(randInput);
+        try {
+            //changing the white fractions and redrawing board
+            if (Integer.parseInt(randInput) >= 0 && Integer.parseInt(randInput) <= 100) {
+                whiteFrac = Integer.parseInt(randInput);
 
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println(randInput);
+            System.out.println(whiteFrac);
+            randomInput.setText("??");
+        }
+        finally {
+            grid.removeAll();
+            grid.repaint();
+            
             populateGrid(whiteFrac);
+            task.cancel();
 
-            frame.setLayout(new BorderLayout());
-            frame.add(grid, BorderLayout.CENTER);
-           // frame.add(settingsPanel, BorderLayout.PAGE_END);
-            frame.setPreferredSize(dimension);
-            frame.pack();
-            frame.setVisible(true);
+           // task=new createTask();
+            //timer.schedule(task,0,interval);
 
-            //create the task in the constructor so we can toggle on off
-            //task = new createTask();
+            game.printBoard(game.board);
+            System.out.println(game.getInitialAlive() + "/" + squareSize*squareSize);
+            System.out.println(whiteFrac);
+            System.out.println(interval);
 
-            update();
         }
     }
 
@@ -191,7 +211,8 @@ public class GameFrame extends JFrame
         GameBoard game = new GameBoard(squareSize, whiteFrac);
         this.game = game;
         byte[][] board = game.getBoard();
- 
+        game.printBoard(board);
+
         for (int i = 0; i < squareSize; i++) {
 
             grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));

@@ -9,6 +9,7 @@ public class GameBoard
    int squareLength;
    byte[][]board;
    byte[][]holdBoard;
+   int initialAlive=0;
    
 
     public GameBoard(int squareLength, int whiteFrac)
@@ -30,14 +31,15 @@ public class GameBoard
         
             for(int j=0;j<squareLength;j++)
             {
-                int pop = (int) (Math.random()*(whiteFrac*2));
-                if(pop%2 ==0)
+                int pop = (int) (Math.random()*100);
+                if(pop<whiteFrac)
                 {
                     board[i][j]=0;
                 }
                 else
                 {
                     board[i][j]=1;
+                    initialAlive++;
                 }
                 
             }
@@ -143,10 +145,11 @@ public class GameBoard
         }
 
         return countLiving;
-}
+    }
 
     public byte[][] getBoard()
     {
         return board;
     }
+    public int getInitialAlive(){return initialAlive;}
 }
