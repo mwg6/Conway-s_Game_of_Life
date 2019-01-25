@@ -189,19 +189,19 @@ public class GameFrame extends JFrame
             randomInput.setText("??");
         }
         finally {
+            iteration =0;
             grid.removeAll();
             grid.repaint();
-            
+
             populateGrid(whiteFrac);
             task.cancel();
 
-           // task=new createTask();
-            //timer.schedule(task,0,interval);
+            task=new createTask();
+            timer.schedule(task,0,interval);
 
-            game.printBoard(game.board);
+
             System.out.println(game.getInitialAlive() + "/" + squareSize*squareSize);
-            System.out.println(whiteFrac);
-            System.out.println(interval);
+
 
         }
     }
