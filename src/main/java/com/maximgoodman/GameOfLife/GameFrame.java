@@ -60,7 +60,7 @@ public class GameFrame extends JFrame
         //create the task in the constructor so we can toggle on off
         task = new createTask();
 
-        update();
+        timer.schedule(task,0,interval);
 
 
     }
@@ -69,34 +69,39 @@ public class GameFrame extends JFrame
         @Override
         public void run () {
 
-            iteration++;
-            game.nextIteration();
-            byte[][] board = game.getBoard();
+          //  byte[][] board = game.getBoard();
 
-            grid.removeAll();
-            grid.repaint();
+            if(iteration!=0){
 
-            for (int i = 0; i < squareSize; i++) {
+                game.nextIteration();
+               // board = game.getBoard();
+                grid.removeAll();
+                grid.repaint();
 
-                grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",", "").replace("0", " ")));
+                updateGrid();
+
+                iterLabel.setText("Iterations: " + iteration);
+
+
+
+                //grid.setVisible(true);
+                frame.pack();
             }
 
-
-            iterLabel.setText("Iterations: " + iteration);
-
-            grid.setVisible(true);
-
-            frame.add(grid, BorderLayout.CENTER);
-
-            frame.pack();
+            iteration++;
         }
     }
 
-    private void update()
-    {
+    private void updateGrid(){
 
-         timer.schedule(task,0,interval);
+        byte[][] board = game.getBoard();
 
+        for (int i = 0; i < squareSize; i++) {
+
+            grid.add(new JLabel(Arrays.toString(board[i]).replace("[",
+                    "").replace("]", "").replace(",",
+                    "").replace("0", " ")));
+        }
     }
 
     private void formatSettings(){
@@ -189,15 +194,22 @@ public class GameFrame extends JFrame
             randomInput.setText("??");
         }
         finally {
-            iteration =0;
+            iteration=0;
+
+            frame.remove(grid);
             grid.removeAll();
             grid.repaint();
 
-            populateGrid(whiteFrac);
             task.cancel();
+            populateGrid(whiteFrac);
 
+            grid.setVisible(true);
+            frame.add(grid, BorderLayout.CENTER);
+
+            frame.pack();
             task=new createTask();
-            timer.schedule(task,0,interval);
+
+            timer.schedule(task,interval,interval);
 
 
             System.out.println(game.getInitialAlive() + "/" + squareSize*squareSize);
@@ -213,10 +225,7 @@ public class GameFrame extends JFrame
         byte[][] board = game.getBoard();
         game.printBoard(board);
 
-        for (int i = 0; i < squareSize; i++) {
+        updateGrid();
 
-            grid.add(new JLabel(Arrays.toString(board[i]).replace("[", "").replace("]", "").replace(",","")));
-
-        }
     }
 }
