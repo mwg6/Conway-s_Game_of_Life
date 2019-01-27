@@ -3,6 +3,8 @@ package com.maximgoodman.GameOfLife;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,9 +20,13 @@ public class GameFrame extends JFrame
 
     JPanel grid;
     JPanel settingsPanel;
+    JPanel infoPanel;
+    JLabel livingLabel;
     JButton cancel;
     JTextArea randomInput;
     JTextArea intervalInput;
+
+    List<Integer> livingList = new ArrayList<>();
 
     GameBoard game;
     Dimension dimension = new Dimension(600,720);
@@ -43,16 +49,24 @@ public class GameFrame extends JFrame
 
         this.settingsPanel=settingsPanel;
 
+        JPanel infoPanel = new JPanel();
+
+        this.infoPanel=infoPanel;
+
         JFrame frame = new JFrame();
         this.frame=frame;
 
         formatSettings();
+        formatInfo();
 
         populateGrid(whiteFrac);
 
         frame.setLayout(new BorderLayout());
+
+        frame.add(infoPanel, BorderLayout.PAGE_START);
         frame.add(grid, BorderLayout.CENTER);
         frame.add(settingsPanel, BorderLayout.PAGE_END);
+
         frame.setPreferredSize(dimension);
         frame.pack();
         frame.setVisible(true);
@@ -81,8 +95,8 @@ public class GameFrame extends JFrame
                 updateGrid();
 
                 iterLabel.setText("Iterations: " + iteration);
-
-
+                livingLabel.setText(game.getAlive()+"/"+squareSize*squareSize);
+                livingList.add(game.getAlive());
 
                 //grid.setVisible(true);
                 frame.pack();
@@ -136,9 +150,18 @@ public class GameFrame extends JFrame
         settingsPanel.add(randomInput);
         settingsPanel.add(percentLabel);
         settingsPanel.add(setButt);
-        settingsPanel.add(iterLabel);
+
         settingsPanel.add(cancel);
 
+    }
+
+    private void formatInfo(){
+        JLabel livingText = new JLabel("Living Cells");
+        livingLabel = new JLabel();
+
+        infoPanel.add(livingText);
+        infoPanel.add(livingLabel);
+        infoPanel.add(iterLabel);
     }
 
     private void cancelButtonPressed(){
@@ -154,6 +177,9 @@ public class GameFrame extends JFrame
         else{
             //necessary to cancel task, not timer, to toggle the action
             task.cancel();
+
+            graph(livingList);
+
             cancel.setText("Resume");
         }
     }
@@ -195,6 +221,7 @@ public class GameFrame extends JFrame
         }
         finally {
             iteration=0;
+            livingList.clear();
 
             frame.remove(grid);
             grid.removeAll();
@@ -212,7 +239,7 @@ public class GameFrame extends JFrame
             timer.schedule(task,interval,interval);
 
 
-            System.out.println(game.getInitialAlive() + "/" + squareSize*squareSize);
+            System.out.println(game.getAlive() + "/" + squareSize*squareSize);
 
 
         }
@@ -224,8 +251,14 @@ public class GameFrame extends JFrame
         this.game = game;
         byte[][] board = game.getBoard();
         game.printBoard(board);
-
+        livingLabel.setText(game.getAlive()+"/"+squareSize*squareSize);
+        livingList.add(game.getAlive());
         updateGrid();
+
+    }
+
+    private void graph(List livingList){
+        Grapher graphFrame = new Grapher(livingList);
 
     }
 }

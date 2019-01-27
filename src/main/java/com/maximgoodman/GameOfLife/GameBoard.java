@@ -9,7 +9,7 @@ public class GameBoard
    int squareLength;
    byte[][]board;
    byte[][]holdBoard;
-   int initialAlive=0;
+   int alive=0;
    
 
     public GameBoard(int squareLength, int whiteFrac)
@@ -39,7 +39,7 @@ public class GameBoard
                 else
                 {
                     board[i][j]=1;
-                    initialAlive++;
+                    alive++;
                 }
                 
             }
@@ -75,6 +75,7 @@ public class GameBoard
             holdBoard[i] = board[i].clone();
         }
       
+        alive = 0;
 
         for(int i =0; i<squareLength;i++)
         {
@@ -83,6 +84,7 @@ public class GameBoard
                 if(board[i][j] == 1)
                 {
                     livingCellRules(i,j);
+                    alive++;
                 }
                 else
                 {
@@ -151,5 +153,5 @@ public class GameBoard
     {
         return board;
     }
-    public int getInitialAlive(){return initialAlive;}
+    public int getAlive(){return alive;}
 }
