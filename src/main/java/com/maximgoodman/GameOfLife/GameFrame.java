@@ -1,5 +1,7 @@
 package com.maximgoodman.GameOfLife;
 
+import org.jfree.ui.RefineryUtilities;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -258,7 +260,10 @@ public class GameFrame extends JFrame
     }
 
     private void graph(List livingList){
-        Grapher graphFrame = new Grapher(livingList);
+        Grapher graphFrame = new Grapher("Living Cells Chart", "Simulation Survival", livingList);
+        graphFrame.pack();
+        RefineryUtilities.centerFrameOnScreen(graphFrame);
+        graphFrame.setVisible(true);
 
     }
 }

@@ -1,56 +1,48 @@
 package com.maximgoodman.GameOfLife;
 
-import javax.swing.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.ui.ApplicationFrame;
+
 import java.awt.*;
 import java.util.List;
 
-public class Grapher{
+public class Grapher extends ApplicationFrame {
 
-    int maxX;
-    int maxY;
-    int xIndexes;
-    int xIncrement;
-    List livingList;
+    public Grapher(String frameTitle, String chartTitle, List data){
+        super(frameTitle);
+        JFreeChart lineChart = ChartFactory.createXYLineChart(
+                chartTitle,
+                "Generation",
+                "Living cells",
+                createDataSet(data),
+                PlotOrientation.VERTICAL,
+                true,true, false);
 
+        ChartPanel chartPanel = new ChartPanel(lineChart);
+        chartPanel.setPreferredSize(new Dimension(500,500));
+        final XYPlot plot = lineChart.getXYPlot();
 
-
-
-    public Grapher(List livingList){
-
-        this.livingList =livingList;
-
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
-
-        JPanel graph = new JPanel();
-        Graphics2D graphics= (Graphics2D)g;
-        graph.paintComponent(graphics);
-
-        maxX = frame.getWidth();
-        maxY = frame.getHeight();
-        xIndexes = livingList.size()-1;
-        xIncrement = maxX/xIndexes;
-
-        //Graphics2D plotter = (Graphics2D)g;
-
-
-        //graph.repaint();
-        frame.add();
-        frame.setPreferredSize(new Dimension (400,600));
-        frame.pack();
-        frame.setVisible(true);
+        setContentPane(chartPanel);
     }
 
-    @Override
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
-        for(int i = 0; i <xIndexes;i++ ){
-            g.setColor(Color.red);
-            g.fillRect(i*xIncrement, (int)livingList.get(i)/100,5,5);
-            // graph.paintImmediately(i*xIncrement,(int)livingList.get(i)/100,20,20);
+    private XYSeriesCollection createDataSet(List data){
+
+        final XYSeries living = new XYSeries("living");
+
+        for(int i =0; i<data.size(); i++){
+            living.add(i, (int)data.get(i));
         }
+
+        final XYSeriesCollection dataSet = new XYSeriesCollection();
+        dataSet.addSeries(living);
+
+        return dataSet;
     }
 
 }
