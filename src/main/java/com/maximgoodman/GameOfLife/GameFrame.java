@@ -78,6 +78,8 @@ public class GameFrame extends JFrame
 
         timer.schedule(task,0,interval);
 
+        frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 
     }
 
@@ -264,6 +266,6 @@ public class GameFrame extends JFrame
         graphFrame.pack();
         RefineryUtilities.centerFrameOnScreen(graphFrame);
         graphFrame.setVisible(true);
-
+        graphFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 }

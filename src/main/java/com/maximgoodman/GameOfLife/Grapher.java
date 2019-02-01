@@ -9,6 +9,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
@@ -28,7 +29,10 @@ public class Grapher extends ApplicationFrame {
         chartPanel.setPreferredSize(new Dimension(500,500));
         final XYPlot plot = lineChart.getXYPlot();
 
+
+
         setContentPane(chartPanel);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     private XYSeriesCollection createDataSet(List data){

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd2b245f-5ba2-4b62-aca5-e9f9b8e12e52" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/Grapher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/Grapher.java" afterDir="false" />
     </list>
@@ -42,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="801">
-              <caret line="265" column="34" selection-start-line="265" selection-start-column="34" selection-end-line="265" selection-end-column="34" />
+            <state relative-caret-position="430">
+              <caret line="268" column="60" selection-start-line="268" selection-start-column="60" selection-end-line="268" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,20 +52,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/Grapher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+            <state relative-caret-position="366">
+              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -110,8 +99,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameBoard.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/Grapher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java" />
       </list>
     </option>
   </component>
@@ -156,7 +145,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548903047757" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548984109448" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -207,18 +196,18 @@
       <updated>1547771884813</updated>
       <workItem from="1547771888038" duration="4767000" />
       <workItem from="1548020317051" duration="30034000" />
-      <workItem from="1548901405421" duration="1636000" />
+      <workItem from="1548901405421" duration="2710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36437000" />
+    <option name="totallyTimeSpent" value="37511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1910" height="1080" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553648" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553648" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -227,7 +216,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3294979" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -289,8 +278,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/Grapher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+        <state relative-caret-position="366">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -306,8 +295,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maximgoodman/GameOfLife/GameFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="801">
-          <caret line="265" column="34" selection-start-line="265" selection-start-column="34" selection-end-line="265" selection-end-column="34" />
+        <state relative-caret-position="430">
+          <caret line="268" column="60" selection-start-line="268" selection-start-column="60" selection-end-line="268" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
